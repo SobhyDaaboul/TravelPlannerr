@@ -1,0 +1,59 @@
+﻿@page
+@model TravelPlanner.Pages.Destinations.IndexModel
+@{
+    ViewData["Title"] = "Popular Destinations";
+}
+
+<section class="py-16 bg-gray-50">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center mb-12">
+            <h2 class="text-4xl font-bold text-gray-900 mb-4">Popular Destinations</h2>
+            <p class="text-xl text-gray-600">
+                Discover the world's most amazing places and start planning your next adventure.
+            </p>
+        </div>
+
+        @if (Model.Destinations.Any())
+        {
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-10">
+                @foreach (var destination in Model.Destinations)
+                {
+                    <div class="bg-white rounded-xl shadow-lg overflow-hidden transition-transform transform hover:scale-105">
+                        @* Image *@
+                        @if (!string.IsNullOrEmpty(destination.ImagePath))
+                        {
+                            <img src="@destination.ImagePath" alt="@destination.Name" class="w-full h-64 object-cover" />
+                        }
+
+                        <div class="p-6">
+                            <h3 class="text-3xl font-bold text-gray-900 mb-2">@destination.Name</h3>
+                            <p class="text-gray-700 mb-1"><strong>City:</strong> @destination.City</p>
+                            <p class="text-gray-700 mb-1"><strong>Country:</strong> @destination.Country</p>
+
+                            <p class="text-gray-600 mt-3 leading-relaxed">@destination.Description</p>
+
+                            <div class="mt-4 text-sm text-gray-600 space-y-1">
+                                <p><strong>Best Time to Visit:</strong> @destination.BestTimeToVisit</p>
+                                <p><strong>Average Rating:</strong> @destination.AverageRating / 5</p>
+                                <p><strong>Review Count:</strong> @destination.ReviewCount reviews</p>
+                                <p><strong>Hotels Available:</strong> @destination.Hotels?.Count ?? 0</p>
+                                <p><strong>Created:</strong> @destination.CreatedAt.ToString("yyyy-MM-dd")</p>
+                            </div>
+
+                            <div class="mt-6 flex justify-end">
+                                <a asp-page="/Destinations/Details" asp-route-id="@destination.Id"
+                                   class="inline-block bg-blue-600 hover:bg-blue-700 text-white font-medium py-2 px-4 rounded-lg shadow">
+                                    Explore Now
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                }
+            </div>
+        }
+        else
+        {
+            <p class="text-center text-gray-500 text-lg">No destinations found.</p>
+        }
+    </div>
+</section>

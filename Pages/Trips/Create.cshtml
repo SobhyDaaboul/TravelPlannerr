@@ -1,0 +1,68 @@
+﻿@page
+@model TravelPlannerr.Pages.Trips.CreateModel
+@{
+    ViewData["Title"] = "Create Trip";
+}
+
+<h1 class="text-3xl font-bold text-gray-800 mb-6">Create a New Trip</h1>
+
+<form method="post" class="bg-white p-6 rounded-lg shadow-md space-y-6">
+
+    <div>
+        <label asp-for="Trip.Name" class="block text-sm font-medium text-gray-700">Trip Name</label>
+        <input asp-for="Trip.Name" class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500" />
+        <span asp-validation-for="Trip.Name" class="text-red-500 text-sm"></span>
+    </div>
+
+    <div>
+        <label asp-for="Trip.StartDate" class="block text-sm font-medium text-gray-700">Start Date</label>
+        <input asp-for="Trip.StartDate" type="date" class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500" />
+        <span asp-validation-for="Trip.StartDate" class="text-red-500 text-sm"></span>
+    </div>
+
+    <div>
+        <label asp-for="Trip.EndDate" class="block text-sm font-medium text-gray-700">End Date</label>
+        <input asp-for="Trip.EndDate" type="date" class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500" />
+        <span asp-validation-for="Trip.EndDate" class="text-red-500 text-sm"></span>
+    </div>
+
+    <div>
+        <label asp-for="Trip.DestinationId" class="block text-sm font-medium text-gray-700">Destination</label>
+        <select asp-for="Trip.DestinationId"
+                asp-items="@(new SelectList(Model.Destinations, "Id", "Name"))"
+                class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500">
+            <option value="">-- Select Destination --</option>
+        </select>
+        <span asp-validation-for="Trip.DestinationId" class="text-red-500 text-sm"></span>
+    </div>
+
+
+    <div>
+        <label asp-for="Trip.Status" class="block text-sm font-medium text-gray-700">Trip Type</label>
+        <select asp-for="Trip.Status" class="mt-1 block w-full border rounded-md px-4 py-2">
+            <option value="">-- Select Type --</option>
+            <option>Adventure</option>
+            <option>Relaxation</option>
+            <option>Business</option>
+        </select>
+    </div>
+
+    <div>
+        <label asp-for="Trip.Notes" class="block text-sm font-medium text-gray-700">Notes</label>
+        <textarea asp-for="Trip.Notes" rows="3" class="mt-1 block w-full border rounded-md px-4 py-2"></textarea>
+    </div>
+
+
+    <div class="flex space-x-4">
+        <button type="submit" class="bg-blue-600 text-white font-semibold px-6 py-2 rounded hover:bg-blue-700 transition">
+            Create
+        </button>
+        <a asp-page="./Index" class="bg-gray-300 text-gray-800 font-semibold px-6 py-2 rounded hover:bg-gray-400 transition">
+            Cancel
+        </a>
+    </div>
+</form>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}
