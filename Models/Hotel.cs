@@ -20,10 +20,10 @@ namespace TravelPlannerr.Models
         public decimal PricePerNight { get; set; }
 
         [Range(0, 5)]
-        public decimal? Rating { get; set; }
+        public decimal Rating { get; set; }
 
-        [Display(Name = "Image")]
-        public string? ImagePath { get; set; }
+        [StringLength(255)]
+        public string ImagePath { get; set; } = string.Empty;
 
         [Required]
         [StringLength(200)]

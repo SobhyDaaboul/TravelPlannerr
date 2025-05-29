@@ -47,7 +47,16 @@ namespace TravelPlannerr.Pages.Trips
             _context.Trips.Add(Trip);
             await _context.SaveChangesAsync();
 
-            return RedirectToPage("./Index");
+
+            TempData["TripName"] = Trip.Name;
+            TempData["StartDate"] = Trip.StartDate.ToShortDateString();
+            TempData["EndDate"] = Trip.EndDate.ToShortDateString();
+            TempData["Status"] = Trip.Status;
+            TempData["DestinationName"] = _context.Destinations
+                .FirstOrDefault(d => d.Id == Trip.DestinationId)?.Name;
+
+
+            return RedirectToPage("Create", new { showPopup = true });
         }
     }
 }

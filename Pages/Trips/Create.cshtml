@@ -65,4 +65,27 @@
 
 @section Scripts {
     <partial name="_ValidationScriptsPartial" />
+
+    @{
+        var showPopup = ViewContext.HttpContext.Request.Query["showPopup"] == "true";
+    }
+
+    @if (showPopup && TempData["TripName"] != null)
+    {
+        <script>
+                        window.onload = function () {
+                            const tripInfo = `
+            📍 Trip: @TempData["TripName"]
+            🗓️ From: @TempData["StartDate"] to @TempData["EndDate"]
+            ✈️ Destination: @TempData["DestinationName"]
+            🎒 Type: @TempData["Status"]
+                            `;
+                            alert("Trip Created Successfully!\n\n" + tripInfo);
+
+                            // Redirect to home after alert
+                            window.location.href = "/";
+                        };
+        </script>
+    }
 }
+
