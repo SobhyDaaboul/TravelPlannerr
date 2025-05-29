@@ -21,7 +21,7 @@ namespace TravelPlannerr.Models
         [Required]
         public int DestinationId { get; set; }
 
-        public Destination? Destination { get; set; }
+        public Destination Destination { get; set; }
 
         public int? HotelId { get; set; } // Nullable hotel
 
@@ -35,5 +35,16 @@ namespace TravelPlannerr.Models
 
         [NotMapped]
         public int TotalDays => (EndDate - StartDate).Days + 1;
+
+        public DateTime CreatedAt { get; set; } = DateTime.UtcNow;
+        // Navigation properties
+        public ICollection<TripDestination> TripDestinations { get; set; } = new List<TripDestination>();
+        
+
+
+
+
+
+
     }
 }

@@ -12,6 +12,8 @@ namespace TravelPlannerr.Models
 
         public int? HotelId { get; set; }
 
+        public int DestinationId { get; set; }
+
         [Required]
         [DataType(DataType.Date)]
         public DateTime CheckInDate { get; set; }

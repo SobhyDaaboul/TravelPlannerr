@@ -42,5 +42,8 @@ namespace TravelPlannerr.Models
 
         // Navigation property
         public ICollection<Hotel> Hotels { get; set; }
+        public ICollection<Trip> Trips { get; set; } = new List<Trip>();
+
+        public ICollection<TripDestination> TripDestinations { get; set; } = new List<TripDestination>();
     }
 }

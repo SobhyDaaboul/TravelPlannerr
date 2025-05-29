@@ -1,11 +1,10 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
-using TravelPlannerr.Data;
 using System.ComponentModel.DataAnnotations;
 using System.Security.Cryptography;
 using System.Text;
 
-namespace TravelPlanner.Pages.Account
+namespace TravelPlannerr.Pages.Account
 {
     public class LoginModel : PageModel
     {
