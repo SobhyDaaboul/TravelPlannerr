@@ -37,6 +37,15 @@ namespace TravelPlannerr.Pages.Trips
         {
             if (!ModelState.IsValid)
             {
+                var errors = ModelState.Values.SelectMany(v => v.Errors).Select(e => e.ErrorMessage);
+                // Log or debug errors
+                Console.WriteLine("Model errors: " + string.Join(", ", errors));
+                Destinations = await _context.Destinations.ToListAsync();
+                return Page();
+            }
+
+            if (!ModelState.IsValid)
+            {
                 Destinations = await _context.Destinations.ToListAsync();
                 return Page();
             }
